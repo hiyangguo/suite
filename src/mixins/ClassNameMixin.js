@@ -1,22 +1,19 @@
 import React from 'react';
 
-const STATE = ['success', 'warning', 'danger', 'info'];
 const SIZES = ['lg', 'md', 'sm', 'xs'];
-const STYLES = ['default', 'primary', 'link', 'inverse'];
+const SHAPES = ['default', 'primary', 'link', 'inverse','success', 'warning', 'danger', 'info'];
 
 let ClassNameMixin = {
     propTypes: {
-        bsStyle: React.PropTypes.oneOf(STYLES),
-        bsSize: React.PropTypes.oneOf(SIZES),
-        bsState: React.PropTypes.oneOf(STATE),
+        size: React.PropTypes.oneOf(SIZES),
+        shape: React.PropTypes.oneOf(SHAPES)
     },
     getClassNames() {
         let classes = [];
-        let { bsStyle, bsSize, bsState} = this.props;
+        let { shape, size, state} = this.props;
 
-        bsStyle && classes.push(this.prefix(bsStyle));
-        bsSize && classes.push(this.prefix(bsSize));
-        bsState && classes.push(this.prefix(bsState));
+        shape && classes.push(this.prefix(shape));
+        size && classes.push(this.prefix(size));
 
         return classes;
     },
@@ -24,9 +21,41 @@ let ClassNameMixin = {
         let { classPrefix } = this.props;
         let prefix = classPrefix ? classPrefix + '-' : '' ;
         return prefix + className;
+    },
+    hasClass: function(element, className) {
+        if (element.classList) {
+          return !!className && element.classList.contains(className);
+        }
+        return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+    },
+    addClass: function(element, className) {
+        if (className) {
+            if (element.classList) {
+                element.classList.add(className);
+            } else if (!this.hasClass(element, className)) {
+                element.className = element.className + ' ' + className;
+            }
+        }
+        return element;
+    },
+    removeClass: function(element, className) {
+        if (className) {
+            if (element.classList) {
+                element.classList.remove(className);
+            } else if (CSSCore.hasClass(element, className)) {
+                element.className = element.className
+                .replace(new RegExp('(^|\\s)' + className + '(?:\\s|$)', 'g'), '$1')
+                .replace(/\s+/g, ' ') // multiple spaces to one
+                .replace(/^\s*|\s*$/g, ''); // trim the ends
+            }
+        }
+        return element;
+    },
+    toggleClass: function(element, className) {
+        return this.hasClass(element, className) ?
+          this.removeClass(element, className) :
+          this.addClass(element, className);
     }
 };
-
-
 
 export default ClassNameMixin;

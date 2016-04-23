@@ -1,7 +1,7 @@
 function inArray(list, item) {
 
     let index = list.findIndex((value) => {
-        return value == item;
+        return value === item;
     });
 
     if(index > -1){

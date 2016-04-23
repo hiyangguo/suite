@@ -1,5 +1,5 @@
-import Button from './Button';
+export Button from './Button';
+export ButtonToolbar from './ButtonToolbar';
 
-export default {
-    Button
-};
+export Dropdown from './Dropdown';
+export ButtonGroup from './ButtonGroup';

@@ -93,26 +93,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	    'div',
-	    { className: 'btn-toolbar' },
+	    null,
 	    _react2.default.createElement(
-	        'h2',
-	        null,
-	        'bsStyle'
+	        'div',
+	        { className: 'btn-toolbar' },
+	        _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Shape'
+	        ),
+	        _react2.default.createElement(
+	            _Dropdown2.default,
+	            { shape: 'default', items: items },
+	            'Default'
+	        ),
+	        _react2.default.createElement(
+	            _Dropdown2.default,
+	            { shape: 'primary', items: items, onSelect: handleSelect },
+	            'Primary'
+	        )
 	    ),
 	    _react2.default.createElement(
-	        _Dropdown2.default,
-	        { bsStyle: 'default', items: items },
-	        'Default'
-	    ),
-	    _react2.default.createElement(
-	        _Dropdown2.default,
-	        { bsStyle: 'primary', items: items, onSelect: handleSelect },
-	        'Primary'
-	    ),
-	    _react2.default.createElement(
-	        _Dropdown2.default,
-	        { bsStyle: 'default', items: items, rename: true },
-	        'Rename'
+	        'div',
+	        { className: 'btn-toolbar' },
+	        _react2.default.createElement(
+	            'h2',
+	            { className: 'clear' },
+	            'Rename'
+	        ),
+	        _react2.default.createElement(
+	            _Dropdown2.default,
+	            { shape: 'default', items: items, rename: true },
+	            'Rename'
+	        )
 	    )
 	), document.getElementById('app-root'));
 
@@ -19773,6 +19786,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    renderAnchor: function renderAnchor(classes) {
 	        var Component = this.props.component || 'a';
 	        var href = this.props.href || '#';
+
 	        return _react2.default.createElement(
 	            Component,
 	            _extends({}, this.props, {
@@ -19877,27 +19891,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var STATE = ['success', 'warning', 'danger', 'info'];
 	var SIZES = ['lg', 'md', 'sm', 'xs'];
-	var STYLES = ['default', 'primary', 'link', 'inverse'];
+	var SHAPES = ['default', 'primary', 'link', 'inverse', 'success', 'warning', 'danger', 'info'];
 
 	var ClassNameMixin = {
 	    propTypes: {
-	        bsStyle: _react2.default.PropTypes.oneOf(STYLES),
-	        bsSize: _react2.default.PropTypes.oneOf(SIZES),
-	        bsState: _react2.default.PropTypes.oneOf(STATE)
+	        size: _react2.default.PropTypes.oneOf(SIZES),
+	        shape: _react2.default.PropTypes.oneOf(SHAPES)
 	    },
 	    getClassNames: function getClassNames() {
 	        var classes = [];
 	        var _props = this.props;
-	        var bsStyle = _props.bsStyle;
-	        var bsSize = _props.bsSize;
-	        var bsState = _props.bsState;
+	        var shape = _props.shape;
+	        var size = _props.size;
+	        var state = _props.state;
 
 
-	        bsStyle && classes.push(this.prefix(bsStyle));
-	        bsSize && classes.push(this.prefix(bsSize));
-	        bsState && classes.push(this.prefix(bsState));
+	        shape && classes.push(this.prefix(shape));
+	        size && classes.push(this.prefix(size));
 
 	        return classes;
 	    },
@@ -19925,7 +19936,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react = __webpack_require__(1);
 
-	var React = _interopRequireWildcard(_react);
+	var _react2 = _interopRequireDefault(_react);
 
 	var _classnames = __webpack_require__(160);
 
@@ -19949,29 +19960,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-	var Dropdown = React.createClass({
+	var Dropdown = _react2.default.createClass({
 	    displayName: 'Dropdown',
 
 	    mixins: [_ClassNameMixin2.default],
 	    propTypes: {
-	        active: React.PropTypes.bool,
-	        disabled: React.PropTypes.bool,
-	        block: React.PropTypes.bool,
-	        dropup: React.PropTypes.bool,
-	        role: React.PropTypes.string,
-	        onClose: React.PropTypes.func,
-	        onOpen: React.PropTypes.func,
-	        onToggle: React.PropTypes.func,
-	        onSelect: React.PropTypes.func,
-	        items: React.PropTypes.array,
+	        active: _react2.default.PropTypes.bool,
+	        disabled: _react2.default.PropTypes.bool,
+	        block: _react2.default.PropTypes.bool,
+	        dropup: _react2.default.PropTypes.bool,
+	        role: _react2.default.PropTypes.string,
+	        onClose: _react2.default.PropTypes.func,
+	        onOpen: _react2.default.PropTypes.func,
+	        onToggle: _react2.default.PropTypes.func,
+	        onSelect: _react2.default.PropTypes.func,
+	        items: _react2.default.PropTypes.array,
 	        /*
 	         * If 'rename' is true , title will be updated after the 'onSelect' trigger .
 	         */
-	        rename: React.PropTypes.bool
+	        rename: _react2.default.PropTypes.bool
 	    },
 	    getDefaultProps: function getDefaultProps() {
 	        return {
@@ -20018,14 +20027,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var props = _objectWithoutProperties(_props, ['items', 'children', 'title', 'className']);
 
-	        var Toggle = React.createElement(
+	        var Toggle = _react2.default.createElement(
 	            _DropdownToggle2.default,
 	            _extends({}, props, {
 	                onClick: this.handleClick
 	            }),
 	            this.state.title || title || children
 	        );
-	        var Menu = React.createElement(_DropdownMenu2.default, {
+	        var Menu = _react2.default.createElement(_DropdownMenu2.default, {
 	            items: items,
 	            onClose: this.toggle,
 	            onSelect: this.handleSelect,
@@ -20033,7 +20042,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 
 	        if (this.state.open) {
-	            Menu = React.createElement(
+	            Menu = _react2.default.createElement(
 	                _RootCloseWrapper2.default,
 	                { onRootClose: this.toggle },
 	                Menu
@@ -20046,7 +20055,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'open': this.state.open
 	        };
 
-	        return React.createElement(
+	        return _react2.default.createElement(
 	            'div',
 	            _extends({}, props, {
 	                className: (0, _classnames2.default)(className, classes),
@@ -20354,7 +20363,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            divider: false
 	        };
 	    },
-
 	    handleClick: function handleClick(event) {
 	        var onSelect = this.props.onSelect;
 
@@ -20362,7 +20370,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            event.preventDefault();
 	            return;
 	        }
-
 	        onSelect && onSelect(event);
 	    },
 	    handleKeyDown: function handleKeyDown(event) {

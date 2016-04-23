@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import ClassNameMixin from './mixins/ClassNameMixin';
 
@@ -6,8 +6,7 @@ import DropdownToggle from './DropdownToggle';
 import DropdownMenu from './DropdownMenu';
 import RootCloseWrapper from './RootCloseWrapper';
 
-
-let Dropdown = React.createClass({
+const Dropdown = React.createClass({
     mixins:[ClassNameMixin],
     propTypes: {
         active: React.PropTypes.bool,
@@ -58,7 +57,7 @@ let Dropdown = React.createClass({
     },
     handleSelect(props, target, event){
         this.props.rename && this.setState({ title : props.label });
-        this.props.onSelect && this.props.onSelect(props,target,event)
+        this.props.onSelect && this.props.onSelect(props,target,event);
     },
     render(){
 
@@ -85,7 +84,7 @@ let Dropdown = React.createClass({
                 <RootCloseWrapper onRootClose={this.toggle}>
                     {Menu}
                 </RootCloseWrapper>
-            )
+            );
         }
 
         let classes = {
@@ -93,8 +92,6 @@ let Dropdown = React.createClass({
             'btn-group': true,
             'open': this.state.open
         };
-
-
 
         return (
             <div

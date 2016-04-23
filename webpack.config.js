@@ -4,8 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: {
         //suite: path.join(__dirname, 'src'),
-        button: './test/button.js',
-        dropdown: './test/dropdown.js'
+        index: './test/index.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -16,9 +15,8 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.js$/,
-
             loaders: [
-                'babel?presets[]=stage-0,presets[]=react,presets[]=es2015,plugins[]=transform-decorators-legacy'
+                'babel?presets[]=stage-0,presets[]=react,presets[]=es2015'
             ],
             exclude: /node_modules/
         }]

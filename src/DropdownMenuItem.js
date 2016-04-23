@@ -17,15 +17,12 @@ let DorpdownMenuItem = React.createClass({
             divider:false
         };
     },
-
     handleClick(event){
-
         let { onSelect } = this.props;
         if(this.props.disabled){
             event.preventDefault();
             return;
         }
-        
         onSelect && onSelect(event);
     },
 

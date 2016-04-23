@@ -24,6 +24,7 @@ let Button = React.createClass({
     renderAnchor(classes) {
         let Component = this.props.component || 'a';
         let href = this.props.href || '#';
+
         return (
             <Component
               {...this.props}
@@ -33,6 +34,7 @@ let Button = React.createClass({
               {this.props.children}
             </Component>
         );
+
     },
     renderButton(classes) {
         let Component = this.props.component || 'button';
